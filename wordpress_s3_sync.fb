@@ -1,0 +1,33 @@
+script "AWS_CLI_sync_WP_uploads" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+    #insert bash script
+    
+
+
+#install pip, and update AWS CLI
+cd /home
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+python ez_setup.py
+wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python get-pip.py
+pip install awscli==1.0.0
+
+#generate config file
+echo "" > /root/.aws/config
+
+#create uploads dir and set permission for server to write to it
+mkdir /srv/www/wordpress/current/wp-content/uploads
+chmod 777 /srv/www/wordpress/current/wp-content/uploads -R
+
+#do inital sync 
+
+
+#add crontab to schedule sync
+
+
+
+  EOH
+end
